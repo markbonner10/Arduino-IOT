@@ -15,3 +15,10 @@ bool lastButtonState =  LOW;      // Stores the previous button state for detect
 unsigned long lastPress = 0;      // Records when the button was last pressed.
 unsigned long lastBeep = 0;       // Records when the buzzer last changed state
 
+bool buzzerOn = false;            // Stores whether the buzzer is currently sounding
+void setup() {                    // Runs once the Arduino starts.
+
+pinMode(ledpin, OUTPUT);          // Sets the LED pin as an output.
+pinMode(buzzerPin, OUTPUT);       // Sets the buzzer pin as an output
+pinMode(buttonPin, INPUT);        // Sets the button pin as an input
+
