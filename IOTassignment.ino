@@ -22,3 +22,23 @@ pinMode(ledpin, OUTPUT);          // Sets the LED pin as an output.
 pinMode(buzzerPin, OUTPUT);       // Sets the buzzer pin as an output
 pinMode(buttonPin, INPUT);        // Sets the button pin as an input
 
+// Stores whether the buzzer is currently sounding.
+bool buzzerOn = false;
+
+void setup() {                    // Runs once when the Arduino starts.
+
+  pinMode(ledPin, OUTPUT);        // Sets the LED pin as an output.
+  pinMode(buzzerPin, OUTPUT);     // Sets the buzzer pin as an output.
+  pinMode(buttonPin, INPUT);      // Sets the button pin as an input.
+
+  Serial.begin(9600);             // Starts the Serial Monitor at 9600 baud.
+
+  lcd.begin(16, 2);               // Starts the 16-column, 2-row LCD.
+  lcd.setRGB(0, 255, 0);          // Sets the LCD backlight to green.
+  lcd.setCursor(0, 0);            // Selects the first row.
+  lcd.print("PARKING ASSIST");    // Displays the project title.
+  lcd.setCursor(0, 1);            // Selects the second row.
+  lcd.print("Starting...");       // Displays a startup message.
+  delay(1500);                    // Keeps the startup message visible briefly.
+  lcd.clear();                    // Clears the startup message.
+}
