@@ -42,3 +42,17 @@ void setup() {                    // Runs once when the Arduino starts.
   delay(1500);                    // Keeps the startup message visible briefly.
   lcd.clear();                    // Clears the startup message.
 }
+
+void loop() {                     // Repeats continuously while powered.
+
+  // Reads the current state of the Grove button.
+  bool buttonState = digitalRead(buttonPin);
+
+  // Checks whether the button has just been pressed.
+  if (lastButtonState == LOW &&
+      buttonState == HIGH &&
+      millis() - lastPress > 250) {
+
+    systemOn = !systemOn;         // Toggles the system on or off.
+    lastPress = millis();         // Records the button press time.
+  }
