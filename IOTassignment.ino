@@ -56,3 +56,28 @@ void loop() {                     // Repeats continuously while powered.
     systemOn = !systemOn;         // Toggles the system on or off.
     lastPress = millis();         // Records the button press time.
   }
+
+  lastButtonState = buttonState;  // Saves the button state for the next loop.
+
+  // Handles the system when it has been switched off.
+  if (!systemOn) {
+
+    digitalWrite(ledPin, LOW);    // Turns off the LED.
+    digitalWrite(buzzerPin, LOW); // Turns off the buzzer.
+    buzzerOn = false;             // Records that the buzzer is off.
+
+    lcd.setRGB(0, 0, 80);         // Sets the backlight to dim blue.
+    lcd.setCursor(0, 0);          // Selects the first row.
+    lcd.print("PARKING ASSIST "); // Displays the project title.
+    lcd.setCursor(0, 1);          // Selects the second row.
+    lcd.print("SYSTEM OFF      ");// Displays the system status.
+
+    delay(50);                    // Waits briefly before checking again.
+    return;                       // Skips the remaining code while switched off.
+  }
+
+  // Reads the light sensor; readings normally range from 0 to 1023.
+  int light = analogRead(lightPin);
+
+  // Sets the default buzzer interval to zero, meaning no warning.
+  int beepInterval = 0;
