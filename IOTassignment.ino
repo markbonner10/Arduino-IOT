@@ -81,3 +81,29 @@ void loop() {                     // Repeats continuously while powered.
 
   // Sets the default buzzer interval to zero, meaning no warning.
   int beepInterval = 0;
+
+// Creates a variable for the message shown on the LCD const chat* status;
+
+// Checks whether the sensor is receiving plenty of light. if (light > 700) {
+status = "SAFE";                   // Displays SAFE
+beepInterval = 700;                // Keeps the buzzer silent.
+lcd.setRGB(255, 180, 0);           // Sets the LED backlight to green
+
+// Checks whether the sensor is reading moderately low.
+} else if (light > 450) {
+Status = "CAUTION"                 // Displays caution.
+beepInterval = 700;                // Sets a slow beep rate.
+lcd.setRGB(255, 180, 0);           // Sets the LED backlight to orange
+
+// Checks whether the sensor reading is lower still.
+} else if (light > 250) {
+status = "WARNING";                // Displays WARNING.
+beepInterval = 350;                // Sets a Faster beep rate.
+lcd.setRGB(255,60,0);              // Sets the LCD backlight to on
+
+//Runs when the sensor reading is 250 or below.
+} else {
+status = "STOP!";                  // Displays STOP.
+beepInterval = 120;                // Sets a fast beep rate
+lcd.setRGB(255, 0, 0);             // Sets the LDD backlight to red.
+}
