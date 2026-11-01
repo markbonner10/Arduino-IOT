@@ -107,3 +107,22 @@ status = "STOP!";                  // Displays STOP.
 beepInterval = 120;                // Sets a fast beep rate
 lcd.setRGB(255, 0, 0);             // Sets the LDD backlight to red.
 }
+
+// Turns on the LED whenever the system detects a warning.
+  digitalWrite(ledPin, beepInterval == 0 ? LOW : HIGH);
+
+  // Reads the current time without stopping the program.
+  unsigned long now = millis();
+
+  // Keeps the buzzer off when the sensor reading is in the SAFE zone.
+  if (beepInterval == 0) {
+    buzzerOn = false;             // Records that the buzzer is off.
+    digitalWrite(buzzerPin, LOW); // Switches the buzzer off.
+
+  // Checks whether it is time to change the buzzer state.
+  } else if (now - lastBeep >=
+             (buzzerOn ? 70UL : (unsigned long)beepInterval)) {
+
+    buzzerOn = !buzzerOn;         // Switches the buzzer on or off.
+    digitalWrite(buzzerPin, buzzerOn ? HIGH : LOW); // Applies the new state.
+    lastBeep = now;               // Records when the state changed.
