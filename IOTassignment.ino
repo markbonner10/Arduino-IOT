@@ -126,3 +126,31 @@ lcd.setRGB(255, 0, 0);             // Sets the LDD backlight to red.
     buzzerOn = !buzzerOn;         // Switches the buzzer on or off.
     digitalWrite(buzzerPin, buzzerOn ? HIGH : LOW); // Applies the new state.
     lastBeep = now;               // Records when the state changed.
+ }
+
+  // Moves the LCD cursor to the beginning of the first row.
+  lcd.setCursor(0, 0);
+
+  // Prints the sensor reading on the first row.
+  lcd.print("Light: ");
+  lcd.print(light);
+
+  // Overwrites leftover characters from any previous longer reading.
+  lcd.print("     ");
+
+  // Moves the LCD cursor to the beginning of the second row.
+  lcd.setCursor(0, 1);
+
+  // Prints the current warning message on the second row.
+  lcd.print(status);
+
+  // Fills the rest of the second row to remove leftover characters.
+  lcd.print("                ");
+
+  // Prints the sensor reading to the computer for calibration.
+  Serial.print("Light level: ");
+  Serial.println(light);
+
+  // Waits briefly before taking the next sensor reading.
+  delay(50);
+}
