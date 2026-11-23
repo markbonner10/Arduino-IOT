@@ -8,6 +8,10 @@
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASS;
 
+// API configuration
+const char* apiKey = "29E5GX0AB2ORFC34";
+
+
 rgb_lcd lcd;                      // Creates the LCD display object.
 
 // Assigns the Arduino pins to the Grove modules.
