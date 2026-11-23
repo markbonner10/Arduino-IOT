@@ -2,7 +2,11 @@
 #include <Wire.h>                 // Enables I2C communication with the LCD.
 #include "rgb_lcd.h"              // Loads the Grove RGB LCD V5.0 library.
 #include WiFiS3.h
-#inlcude "arduino_secret.h
+#inlcude "arduino_secret.h"
+
+//WiFi Credentials
+char ssid[] = SECRET_SSID;
+char pass[] = SECRET_PASS;
 
 rgb_lcd lcd;                      // Creates the LCD display object.
 
